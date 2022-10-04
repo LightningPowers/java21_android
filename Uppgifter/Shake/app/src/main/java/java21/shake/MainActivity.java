@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
                 b.setText("Start!");
             }
 
+            //Used for debugging
             buttonClicks++;
             tv.setText("Clicked: " + buttonClicks + " times!");
             Log.i("buttonTest", "Button has been clicked " + buttonClicks + " times.");
