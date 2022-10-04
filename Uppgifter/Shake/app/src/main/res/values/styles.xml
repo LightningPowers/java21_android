@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="X_AxisProgressBarStyle">
+        <item name="colorAccent">@color/x_axis</item>
+    </style>
+    <style name="Y_AxisProgressBarStyle">
+        <item name="colorAccent">@color/y_axis</item>
+    </style>
+    <style name="Z_AxisProgressBarStyle">
+        <item name="colorAccent">@color/z_axis</item>
+    </style>
+</resources>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/title_text"
+        android:layout_width="218dp"
+        android:layout_height="74dp"
+        android:text="@string/title_text"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.094" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_text"
+        app:layout_constraintVertical_bias="0.12" />
+
+    <TextView
+        android:id="@+id/text_box"
+        android:layout_width="153dp"
+        android:layout_height="26dp"
+        android:text="@string/text_box"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintVertical_bias="0.13" />
+
+    <TextView
+        android:id="@+id/x_axis_text"
+        android:layout_width="153dp"
+        android:layout_height="26dp"
+        android:text="@string/x_axis_text"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/xAxisBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_box"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/y_axis_text"
+        android:layout_width="153dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="18dp"
+        android:text="@string/y_axis_text"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/yAxisBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/xAxisBar" />
+
+    <TextView
+        android:id="@+id/z_axis_text"
+        android:layout_width="153dp"
+        android:layout_height="26dp"
+        android:text="@string/z_axis_text"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/zAxisBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/yAxisBar"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ProgressBar
+        android:id="@+id/xAxisBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="178dp"
+        android:layout_height="32dp"
+        android:progress="50"
+        android:theme="@style/X_AxisProgressBarStyle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_box"
+        app:layout_constraintVertical_bias="0.283" />
+
+    <ProgressBar
+        android:id="@+id/yAxisBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="178dp"
+        android:layout_height="32dp"
+        android:progress="50"
+        android:theme="@style/Y_AxisProgressBarStyle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/xAxisBar"
+        app:layout_constraintVertical_bias="0.222" />
+
+    <ProgressBar
+        android:id="@+id/zAxisBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="178dp"
+        android:layout_height="32dp"
+        android:progress="50"
+        android:theme="@style/Z_AxisProgressBarStyle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/yAxisBar"
+        app:layout_constraintVertical_bias="0.351" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
