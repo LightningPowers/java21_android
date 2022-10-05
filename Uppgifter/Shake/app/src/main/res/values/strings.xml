@@ -3,7 +3,7 @@
     <string name="title_text">Shake App</string>
     <string name="text_box">Default text here</string>
     <string name="button_text">Start!</string>
-    <string name="x_axis_text">X-Axis:  0°</string>
-    <string name="y_axis_text">Y-Axis:  0°</string>
-    <string name="z_axis_text">Z-Axis:  0°</string>
+    <string name="x_axis_text">X-Axis:  0</string>
+    <string name="y_axis_text">Y-Axis:  0</string>
+    <string name="z_axis_text">Z-Axis:  0</string>
 </resources>

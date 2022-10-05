@@ -33,18 +33,6 @@
         app:layout_constraintVertical_bias="0.12" />
 
     <TextView
-        android:id="@+id/text_box"
-        android:layout_width="153dp"
-        android:layout_height="26dp"
-        android:text="@string/text_box"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        app:layout_constraintVertical_bias="0.13" />
-
-    <TextView
         android:id="@+id/x_axis_text"
         android:layout_width="153dp"
         android:layout_height="26dp"
@@ -52,9 +40,7 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/xAxisBar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_box"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/y_axis_text"
@@ -66,7 +52,8 @@
         app:layout_constraintBottom_toTopOf="@+id/yAxisBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/xAxisBar" />
+        app:layout_constraintTop_toBottomOf="@+id/xAxisBar"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/z_axis_text"
@@ -91,8 +78,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_box"
-        app:layout_constraintVertical_bias="0.283" />
+        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintVertical_bias="0.293" />
 
     <ProgressBar
         android:id="@+id/yAxisBar"
@@ -120,6 +107,6 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/yAxisBar"
-        app:layout_constraintVertical_bias="0.351" />
+        app:layout_constraintVertical_bias="0.3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
