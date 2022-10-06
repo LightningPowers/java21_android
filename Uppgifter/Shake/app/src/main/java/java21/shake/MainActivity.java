@@ -9,6 +9,7 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     TextView xAxisText, yAxisText, zAxisText = null;
     List list;
     boolean activated = false;
+    ProgressBar xAxisBar, yAxisBar, zAxisBar = null;
 
     SensorEventListener sel = new SensorEventListener(){
         public void onAccuracyChanged(Sensor sensor, int accuracy) {}
@@ -35,6 +37,10 @@ public class MainActivity extends AppCompatActivity {
             xAxisText.setText("X-Axis: " + df.format(values[0]));
             yAxisText.setText("Y-Axis: " + df.format(values[1]));
             zAxisText.setText("Z-Axis: " + df.format(values[2]));
+
+            movementToProgressBar(values[0], xAxisBar);
+            movementToProgressBar(values[1], yAxisBar);
+            movementToProgressBar(values[2], zAxisBar);
         }
     };
 
@@ -51,6 +57,10 @@ public class MainActivity extends AppCompatActivity {
         xAxisText = (TextView) findViewById(R.id.x_axis_text);
         yAxisText = (TextView) findViewById(R.id.y_axis_text);
         zAxisText = (TextView) findViewById(R.id.z_axis_text);
+
+        xAxisBar = (ProgressBar) findViewById(R.id.xAxisBar);
+        yAxisBar = (ProgressBar) findViewById(R.id.yAxisBar);
+        zAxisBar = (ProgressBar) findViewById(R.id.zAxisBar);
 
         list = sm.getSensorList(Sensor.TYPE_ACCELEROMETER);
 
@@ -74,5 +84,44 @@ public class MainActivity extends AppCompatActivity {
                 activated = false;
             }
         });
+    }
+
+    //Method to show movement on the progressbar
+    private void movementToProgressBar(Float positionalValue, ProgressBar progressBar){
+        int number = Math.round(positionalValue);
+
+        if (-10 >= number){
+            progressBar.setProgress(0);
+        }
+        else if (number >= -10 && number < -8){
+            progressBar.setProgress(10);
+        }
+        else if (number >= -8 && number < -6){
+            progressBar.setProgress(20);
+        }
+        else if (number >= -6 && number < -4){
+            progressBar.setProgress(30);
+        }
+        else if (number >= -4 && number < -2){
+            progressBar.setProgress(40);
+        }
+        else if (number >= -2 && number < 2){
+            progressBar.setProgress(50);
+        }
+        else if (number >= 2 && number < 4){
+            progressBar.setProgress(60);
+        }
+        else if (number >= 4 && number < 6){
+            progressBar.setProgress(70);
+        }
+        else if (number >= 4 && number < 6){
+            progressBar.setProgress(80);
+        }
+        else if (number >= 6 && number < 8){
+            progressBar.setProgress(90);
+        }
+        else if (number >= 8 && number < 10){
+            progressBar.setProgress(100);
+        }
     }
 }
