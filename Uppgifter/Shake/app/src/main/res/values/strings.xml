@@ -6,4 +6,7 @@
     <string name="x_axis_text">X-Axis:  0</string>
     <string name="y_axis_text">Y-Axis:  0</string>
     <string name="z_axis_text">Z-Axis:  0</string>
+    <string name="frag_text"> </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

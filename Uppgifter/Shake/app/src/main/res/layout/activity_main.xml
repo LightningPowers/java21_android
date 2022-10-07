@@ -109,4 +109,15 @@
         app:layout_constraintTop_toBottomOf="@+id/yAxisBar"
         app:layout_constraintVertical_bias="0.3" />
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container_view"
+        android:name="java21.shake.BlankFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout="@layout/fragment" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

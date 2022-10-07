@@ -23,12 +23,12 @@ public class MainActivity extends AppCompatActivity {
     List list;
     boolean activated = false;
     ProgressBar xAxisBar, yAxisBar, zAxisBar = null;
+    //Formatting amount of decimals
+    DecimalFormat df = new DecimalFormat("#.###");
 
     SensorEventListener sel = new SensorEventListener(){
         public void onAccuracyChanged(Sensor sensor, int accuracy) {}
         public void onSensorChanged(SensorEvent event) {
-            //Formatting amount of decimals
-            DecimalFormat df = new DecimalFormat("#.###");
 
             //Sets values from each axis into an array
             float[] values = event.values;
