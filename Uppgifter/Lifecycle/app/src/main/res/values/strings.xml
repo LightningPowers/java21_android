@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Lifecycle</string>
+    <string name="button_main">Main</string>
+    <string name="button_second">Second</string>
+    <string name="button_third">Third</string>
+    <string name="text_main_frag">Login</string>
+    <string name="text_second_frag">Second fragment</string>
+    <string name="text_third_frag">Third fragment</string>
+    <string name="username_text">Username</string>
+    <string name="password_text">Password</string>
+    <string name="login_button">Submit</string>
+</resources>
