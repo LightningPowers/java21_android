@@ -11,6 +11,7 @@ import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.Spinner
 import android.widget.SpinnerAdapter
 import android.widget.TextClock
@@ -36,8 +37,7 @@ class SecondFragment : Fragment() {
         val nameText: TextView = view.findViewById(R.id.formName)
         val bdayText: TextView = view.findViewById(R.id.formBday)
         val eIDText: TextView = view.findViewById(R.id.formID)
-
-
+        val checkBox: CheckBox = view.findViewById(R.id.checkBox)
         val saveBtn: Button = view.findViewById(R.id.formButton)
         val errorTxt: TextView = view.findViewById(R.id.formErrorText)
 
@@ -73,6 +73,7 @@ class SecondFragment : Fragment() {
             }
             else {
                 errorTxt.text = ""
+                MainActivity.isRemote = checkBox.isChecked
                 Log.i("saveButton", "Accepted field input")
             }
         }
