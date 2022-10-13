@@ -86,4 +86,16 @@
         android:layout_margin="20dp"
         android:text="@string/button_form" />
 
+    <TextView
+        android:id="@+id/formErrorText"
+        android:layout_width="351dp"
+        android:layout_height="35dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="-10dp"
+        android:gravity="center"
+        android:text="@string/errortext_form"
+        android:textColor="#9C0101"
+        android:textSize="16sp"
+        tools:ignore="SpeakableTextPresentCheck" />
+
 </LinearLayout>

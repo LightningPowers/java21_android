@@ -24,5 +24,6 @@
         <item>United States</item>
     </string-array>
     <string name="button_form">Save</string>
+    <string name="errortext_form">  </string>
 
 </resources>
