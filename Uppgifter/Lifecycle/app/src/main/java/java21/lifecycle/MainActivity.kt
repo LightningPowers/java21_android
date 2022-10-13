@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         var birthdate: String = ""
         var employee_id: Int = 0
         var officeLocation: String = ""
-        var isRemote: Boolean = false
+        var isRemote: Boolean = true
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -3,7 +3,6 @@
     <string name="button_main">Main</string>
     <string name="button_second">Second</string>
     <string name="button_third">Third</string>
-    <string name="text_third_frag">Third fragment</string>
     //Main fragment
     <string name="text_main_frag">Login</string>
     <string name="username_text">Username</string>
@@ -12,7 +11,7 @@
     //Second fragment
     <string name="text_second_frag">Fill Out Form</string>
     <string name="name_form">Name</string>
-    <string name="birthday_form">Date of Birth (YYYY/MM/DD)</string>
+    <string name="birthday_form">Date of Birth</string>
     <string name="employee_id_form">Employee ID</string>
     <string name="checkbox_form">Working Remotely?</string>
     <string name="spinner_title_form">Office Location</string>
@@ -25,5 +24,11 @@
     </string-array>
     <string name="button_form">Save</string>
     <string name="errortext_form">  </string>
-
+    //Third fragment
+    <string name="data_title">Saved Data</string>
+    <string name="data_name">Employee Name</string>
+    <string name="data_bday">Employee Date of Birth</string>
+    <string name="data_id">Employee ID</string>
+    <string name="data_office">Working Office Location</string>
+    <string name="data_remotestatus">Remote Working Status</string>
 </resources>
