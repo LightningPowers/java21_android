@@ -5,11 +5,22 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.Toast
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.Month
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
     companion object {
-        var loggedIn: Boolean = false
+        var loggedIn: Boolean = true
+
+        //Form variables used in 2nd and 3rd fragment
+        var name: String = ""
+        var birthdate: String = ""
+        var employee_id: Int = 0
+        var officeLocation: String = ""
+        var isRemote: Boolean = false
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

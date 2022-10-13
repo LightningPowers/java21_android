@@ -3,10 +3,26 @@
     <string name="button_main">Main</string>
     <string name="button_second">Second</string>
     <string name="button_third">Third</string>
-    <string name="text_main_frag">Login</string>
-    <string name="text_second_frag">Second fragment</string>
     <string name="text_third_frag">Third fragment</string>
+    //Main fragment
+    <string name="text_main_frag">Login</string>
     <string name="username_text">Username</string>
     <string name="password_text">Password</string>
     <string name="login_button">Submit</string>
+    //Second fragment
+    <string name="text_second_frag">Fill Out Form</string>
+    <string name="name_form">Name</string>
+    <string name="birthday_form">Date of Birth (YYYY/MM/DD)</string>
+    <string name="employee_id_form">Employee ID</string>
+    <string name="checkbox_form">Working Remotely?</string>
+    <string name="spinner_title_form">Office Location</string>
+    <string-array name="country_list_form">
+        <item>Australia</item>
+        <item>Barbados</item>
+        <item>Ireland</item>
+        <item>Malta</item>
+        <item>United States</item>
+    </string-array>
+    <string name="button_form">Save</string>
+
 </resources>
