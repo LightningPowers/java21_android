@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    public fun callConvertApi(): Boolean{
+    /*public fun callConvertApi(): Boolean{
         var returnValue: Boolean = false
 
         if (MainActivity.baseCurrency.isBlank() || MainActivity.targetCurrency.isBlank() || MainActivity.amount == 0){
@@ -58,8 +58,9 @@ class MainActivity : AppCompatActivity() {
                 try {
                     // Simple-json lib
                     val parser = JSONParser()
-                    val response: Any = response?.get("response") ?:
-                    Log.w("responseTest", response.toString())
+                    //val answer: Any
+                    val answer: Any = response!!.get("response")
+                    Log.w("responseTest", answer.toString())
 
                 } catch (e: Exception) {
                     Log.e("weather", e.message.toString())
@@ -75,5 +76,5 @@ class MainActivity : AppCompatActivity() {
         }
 
         return returnValue
-    }
+    }*/
 }
