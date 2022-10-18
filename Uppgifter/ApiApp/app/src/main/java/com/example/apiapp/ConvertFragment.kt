@@ -25,8 +25,6 @@ class ConvertFragment : Fragment() {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_convert, container, false)
 
-        //val ma = MainActivity()
-        //var result = ma.callConvertApi()
         //var result =
         callConvertApi()
         //Log.i("apiCallTest", result.toString())
@@ -34,7 +32,7 @@ class ConvertFragment : Fragment() {
         return view
     }
 
-    public fun callConvertApi(): Boolean{
+    private fun callConvertApi(): Boolean{
         var returnValue: Boolean = false
 
         if (MainActivity.baseCurrency.isBlank() || MainActivity.targetCurrency.isBlank() || MainActivity.amount == 0){
@@ -53,9 +51,7 @@ class ConvertFragment : Fragment() {
             val url = "https://api.currencyscoop.com/v1/convert?api_key=${apikey}" +
                     "&from=${currency1}&to=${currency2}&amount=${amount}"
 
-            //var main: MainActivity? = parentFragment?.activity as MainActivity
-            //val queue = Volley.newRequestQueue(main)
-            val queue2 = Volley.newRequestQueue(activity)
+            val queue = Volley.newRequestQueue(activity)
 
             val JsonRequest = JsonObjectRequest(
                 Request.Method.GET, url, null, { response: JSONObject? ->
@@ -79,7 +75,7 @@ class ConvertFragment : Fragment() {
                 })
 
 
-            queue2.add(JsonRequest)
+            queue.add(JsonRequest)
         }
 
         return returnValue
