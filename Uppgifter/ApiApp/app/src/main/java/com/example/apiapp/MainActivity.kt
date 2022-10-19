@@ -1,14 +1,7 @@
 package com.example.apiapp
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.android.volley.Request
-import com.android.volley.VolleyError
-import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.Volley
-import org.json.JSONObject
-import org.json.simple.parser.JSONParser
 
 
 class MainActivity : AppCompatActivity() {
@@ -18,10 +11,16 @@ class MainActivity : AppCompatActivity() {
         var cityName: String = ""
         var countryCode: String = ""
 
-        //Used in convert
-        var baseCurrency: String = "eur"
-        var targetCurrency: String = "sek"
-        var amount: Int = 10
+        //Used in convert url request
+        var baseCurrency: String = ""
+        var targetCurrency: String = ""
+        var amount: Int = 0
+
+        //Used in convert local data
+        var firstCurrency: String = ""
+        var secondCurrency: String = ""
+        var outputAmount: Int = 0
+        var outputValue: Float = 0.0f
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
