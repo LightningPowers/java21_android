@@ -24,12 +24,10 @@ class ConvertResultFragment : Fragment() {
         val amountText: TextView = view.findViewById(R.id.convertResultAmountText)
         val valueText: TextView = view.findViewById(R.id.convertResultValueText)
 
-        if (MainActivity.firstCurrency.isNotBlank()){
-            currency1Text.text = MainActivity.firstCurrency
-            currency2Text.text = MainActivity.secondCurrency
-            amountText.text = MainActivity.outputAmount.toString()
-            valueText.text = MainActivity.outputValue.toString()
-        }
+        currency1Text.text = MainActivity.firstCurrency
+        currency2Text.text = MainActivity.secondCurrency
+        amountText.text = MainActivity.outputAmount.toString()
+        valueText.text = MainActivity.outputValue.toString()
 
         return view
     }

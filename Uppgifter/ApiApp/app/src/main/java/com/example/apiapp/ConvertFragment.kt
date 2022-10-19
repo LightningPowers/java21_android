@@ -61,16 +61,16 @@ class ConvertFragment : Fragment() {
         return view
     }
 
-    private fun callConvertApi(): Boolean{
-        var returnValue: Boolean = false
+    private fun callConvertApi(){
+        var isCorrect: Boolean = false
 
         if (MainActivity.baseCurrency.isBlank() || MainActivity.targetCurrency.isBlank() || MainActivity.amount == 0){
-            returnValue = false
-            Log.i("testConvertApi", returnValue.toString())
+            isCorrect = false
+            Log.i("testConvertApi", isCorrect.toString())
         }
         else {
-            returnValue = true
-            Log.i("testConvertApi", returnValue.toString())
+            isCorrect = true
+            Log.i("testConvertApi", isCorrect.toString())
 
             var currency1: String = MainActivity.baseCurrency
             var currency2: String = MainActivity.targetCurrency
@@ -107,7 +107,6 @@ class ConvertFragment : Fragment() {
                     MainActivity.outputAmount = Integer.parseInt(resultAmount)
 
                     val df = DecimalFormat("#.###")
-                    //val formattedValue = df.format(resultValue.toFloat())
                     MainActivity.outputValue = df.format(resultValue.toFloat()).toFloat()
 
                 } catch (e: Exception) {
@@ -120,7 +119,5 @@ class ConvertFragment : Fragment() {
 
             queue.add(JsonRequest)
         }
-
-        return returnValue
     }
 }
