@@ -24,8 +24,8 @@
         android:layout_height="60dp"
         android:layout_margin="20dp"
         android:ems="10"
+        android:hint="City Name"
         android:inputType="textPersonName"
-        android:text="City Name"
         android:textAlignment="center" />
 
     <EditText
@@ -34,8 +34,8 @@
         android:layout_height="60dp"
         android:layout_margin="20dp"
         android:ems="10"
+        android:hint="Country Code"
         android:inputType="textPersonName"
-        android:text="Country Code"
         android:textAlignment="center" />
 
     <Button

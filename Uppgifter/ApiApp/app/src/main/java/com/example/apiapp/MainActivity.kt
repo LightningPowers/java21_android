@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         //Used in weather local data
         var location: String = "" //city + country
         var description: String = "" //eg. Clouds
-        var temperature: String = "" //Todo: convert from kelvin to celsius and add the degrees icon + celsius (C)
+        var temperature: String = "" 
 
         //Used in convert url request
         var baseCurrency: String = ""

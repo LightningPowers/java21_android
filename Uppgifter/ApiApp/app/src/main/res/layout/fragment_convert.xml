@@ -21,8 +21,8 @@
         android:layout_height="60dp"
         android:layout_margin="20dp"
         android:ems="10"
+        android:hint="Base Currency"
         android:inputType="textPersonName"
-        android:text="Base Currency"
         android:textAlignment="center" />
 
     <EditText
@@ -31,8 +31,8 @@
         android:layout_height="60dp"
         android:layout_margin="20dp"
         android:ems="10"
+        android:hint="Target Currency"
         android:inputType="textPersonName"
-        android:text="Target Currency"
         android:textAlignment="center" />
 
     <EditText
@@ -41,8 +41,8 @@
         android:layout_height="60dp"
         android:layout_margin="20dp"
         android:ems="10"
+        android:hint="Amount"
         android:inputType="number"
-        android:text="Amount"
         android:textAlignment="center" />
 
     <Button
