@@ -9,7 +9,6 @@ import android.widget.TextView
 
 class SearchFragment : Fragment() {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -20,7 +19,7 @@ class SearchFragment : Fragment() {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_search, container, false)
 
-
+        
 
         return view
     }
