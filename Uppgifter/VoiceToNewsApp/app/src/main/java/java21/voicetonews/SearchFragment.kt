@@ -11,6 +11,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import com.android.volley.Request
+import com.android.volley.VolleyError
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
+import org.json.JSONObject
 import java.util.*
 
 class SearchFragment : Fragment() {
@@ -103,6 +108,7 @@ class SearchFragment : Fragment() {
                 Log.i("submitTest", "Search term: $recordedSearchTerm, Sort method: $selectedSortMethod")
 
                 //Todo: Make api call with given data + go to resultFragment w/ back stacking!
+
             }
             else {
                 errorText.text = "Record something before submitting!"
@@ -133,5 +139,47 @@ class SearchFragment : Fragment() {
                 recordedSearchTerm = Objects.requireNonNull(res)[0]
             }
         }
+    }
+
+    // Calling news Api
+    fun callApi (searchTerm: String, sortingMethod: String) {
+
+        val apiKey: String = "a387816e461540d59289caccadd582d5"
+        val url = "https://newsapi.org/v2/everything?q=$searchTerm&sortBy=$sortingMethod&apiKey=$apiKey"
+
+        val queue = Volley.newRequestQueue(this.context)
+
+        val jsonRequest = JsonObjectRequest(
+            Request.Method.GET, url, null, { response: JSONObject? ->
+                // Display the first 500 characters of the response string.
+                Log.w("initialResponse", response.toString())
+
+                try {
+                    // https://github.com/SirSalsa/java21_android/blob/main/Uppgifter/ApiApp/app/src/main/java/com/example/apiapp/WeatherFragment.kt
+                    //Getting location
+                    /*
+                    val cityName: String = response!!.get("name").toString().replace("\"","")
+                    val country: String = response.get("sys").toString().replace("\"","")
+                    val countryArray: Array<String> = country.split(",").toTypedArray()
+                    val outputCountryCode: String = countryArray[2].substring(countryArray[2].indexOf(":")+1)
+
+                    //Getting description
+                    val weather: String = response.get("weather").toString().replace("\"","")
+                    val weatherArray: Array<String> = weather.split(",").toTypedArray()
+                    val description: String = weatherArray[1].substring(weatherArray[1].indexOf(":")+1)*/
+
+                     //Todo: handle json response and add to arraylist of beans
+
+
+                } catch (e: Exception) {
+                    Log.e("responseException", e.message.toString())
+                }
+            },
+            { error: VolleyError ->
+                Log.w("volleyError", "error")
+            })
+
+        queue.add(jsonRequest)
+
     }
 }
