@@ -1,16 +1,16 @@
 package java21.voicetonews
 
+import android.annotation.SuppressLint
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.os.Bundle
 import android.speech.RecognizerIntent
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import java.util.*
 
 class SearchFragment : Fragment() {
@@ -21,7 +21,12 @@ class SearchFragment : Fragment() {
     lateinit var recBtn: Button
     lateinit var recOutputText: TextView
     lateinit var errorText: TextView
+    lateinit var searchBtn: Button
 
+    // Temp variable for storing search term
+    private var recordedSearchTerm: String = ""
+
+    @SuppressLint("MissingInflatedId", "SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -31,8 +36,42 @@ class SearchFragment : Fragment() {
 
         recBtn = view.findViewById(R.id.searchRecordButton)
         recOutputText = view.findViewById(R.id.searchOutputText)
-        errorText= view.findViewById(R.id.searchStatusText)
+        errorText = view.findViewById(R.id.searchStatusText)
+        searchBtn = view.findViewById(R.id.searchSubmitButton)
 
+        errorText.text = ""
+        var selectedSortMethod: String = ""
+
+        // Access dropdown items & spinner (dropdown)
+        val sortOptions: Array<String> = view.resources.getStringArray(R.array.SortingOptions)
+        val sortingDropdown: Spinner = view.findViewById(R.id.sortByDropdown)
+
+        sortingDropdown.adapter = activity?.let { ArrayAdapter.createFromResource(it, R.array.SortingOptions, android.R.layout.simple_spinner_item) } as SpinnerAdapter
+
+        sortingDropdown.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                Log.i("testDropdown", "Nothing selected!")
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                Log.i("testDropdown", sortOptions[position])
+
+                //Set sortByMethod to local variable based on input
+                when (sortOptions[position]) {
+                    "Relevancy" -> {
+                        selectedSortMethod = "relevancy"
+                    }
+                    "Popularity" -> {
+                        selectedSortMethod = "popularity"
+                    }
+                    "Recency" -> {
+                        selectedSortMethod = "publishedAt"
+                    }
+                }
+            }
+        }
+
+        // Record button
         recBtn.setOnClickListener {
             // Declaring speech recognizer intent.
             val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
@@ -54,10 +93,27 @@ class SearchFragment : Fragment() {
                 errorText.text = e.message.toString()
             }
         }
+
+        // Search Button
+        searchBtn.setOnClickListener{
+            if (recordedSearchTerm.isNotBlank()){
+                errorText.text = ""
+                MainActivity.searchTerm = recordedSearchTerm
+                MainActivity.sortByMethod = selectedSortMethod
+                Log.i("submitTest", "Search term: $recordedSearchTerm, Sort method: $selectedSortMethod")
+
+                //Todo: Make api call with given data + go to resultFragment w/ back stacking!
+            }
+            else {
+                errorText.text = "Record something before submitting!"
+            }
+        }
+
         return view
     }
 
     // Retrieving data from recording
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -72,6 +128,9 @@ class SearchFragment : Fragment() {
 
                 // Displaying output as text in text output box
                 recOutputText.text = Objects.requireNonNull(res)[0]
+
+                // Storing output as search term
+                recordedSearchTerm = Objects.requireNonNull(res)[0]
             }
         }
     }
