@@ -110,9 +110,10 @@ class SearchFragment : Fragment() {
                 MainActivity.sortByMethod = selectedSortMethod
                 Log.i("submitTest", "Search term: ${MainActivity.searchTerm}, Sort method: ${MainActivity.sortByMethod}")
 
-                //Todo: Make api call with given data + go to resultFragment w/ back stacking!
-
+                // Makes api call and get the returned arraylist of beans
                 MainActivity.beanList = ApiHelper.JsonToBeans()
+
+                // Backstack
                 fm.beginTransaction().replace(R.id.fragmentContainerView, ResultFragment()).addToBackStack("1").commit()
             }
             else {

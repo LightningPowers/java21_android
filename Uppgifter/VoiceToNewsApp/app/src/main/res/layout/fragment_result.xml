@@ -8,20 +8,17 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center|top"
-        android:text="Result Fragment"
-        android:textSize="24sp" />
-
     <ScrollView
-        android:id="@+id/articleFeed"
+        android:id="@+id/articleContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:ignore="SpeakableTextPresentCheck">
 
+        <LinearLayout
+            android:id="@+id/articleFeed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
     </ScrollView>
 
 </LinearLayout>

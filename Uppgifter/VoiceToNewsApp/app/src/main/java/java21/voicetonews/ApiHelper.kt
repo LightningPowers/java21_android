@@ -9,6 +9,9 @@ class ApiHelper {
         //public fun JsonToBeans(response: JSONObject, searchTerm: String, sortBy: String) :ArrayList<ArticleBean> {
         public fun JsonToBeans() :ArrayList<ArticleBean> {
 
+            //Todo: Add timer delay when doing api call
+
+
             var placeholderBean: ArticleBean = ArticleBean(
                 "Placeholder Title",
                 "blob:https://genrandom.com/fc8f389c-88b7-4ceb-a5dc-c997c0060d1e",
@@ -23,4 +26,9 @@ class ApiHelper {
             return beanList
         }
     }
+
+    // Calls the api with given parameters, returns response object
+    /*private fun apiCall() :JSONObject {
+        ...
+    }*/
 }

@@ -16,8 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.093"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.905" />
+        app:layout_constraintTop_toBottomOf="@+id/articleTitle" />
 
     <TextView
         android:id="@+id/articleTitle"
@@ -37,23 +36,24 @@
         android:id="@+id/articleSource"
         android:layout_width="240dp"
         android:layout_height="30dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center|left"
         android:text="FauxNews"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/articleTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.093"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.094" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/articleImage"
         android:layout_width="130dp"
         android:layout_height="125dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.943"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/articleTitle"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.506"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
