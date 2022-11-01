@@ -13,8 +13,8 @@ class ApiHelper {
 
 
             var placeholderBean: ArticleBean = ArticleBean(
-                "Placeholder Title",
-                "blob:https://genrandom.com/fc8f389c-88b7-4ceb-a5dc-c997c0060d1e",
+                "Man Can’t Remember What He Ran Into Burning Building For",
+                "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
                 "Fauxnews",
                 "15:04 - Nov 1st")
             var beanList = arrayListOf<ArticleBean>(placeholderBean)
