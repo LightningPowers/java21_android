@@ -8,6 +8,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         var searchTerm: String = ""
         var sortByMethod: String = ""
+        lateinit var beanList: ArrayList<ArticleBean>
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

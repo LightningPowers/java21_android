@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.fragment.app.FragmentManager
 import com.android.volley.Request
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
@@ -29,7 +30,7 @@ class SearchFragment : Fragment() {
     lateinit var searchBtn: Button
 
     // Temp variable for storing search term
-    private var recordedSearchTerm: String = ""
+    //private var recordedSearchTerm: String = ""
 
     @SuppressLint("MissingInflatedId", "SetTextI18n")
     override fun onCreateView(
@@ -44,6 +45,9 @@ class SearchFragment : Fragment() {
         errorText = view.findViewById(R.id.searchStatusText)
         searchBtn = view.findViewById(R.id.searchSubmitButton)
 
+        // To handle backstacking
+        val fm: FragmentManager = parentFragmentManager
+
         errorText.text = ""
         var selectedSortMethod: String = ""
 
@@ -54,11 +58,11 @@ class SearchFragment : Fragment() {
         sortingDropdown.adapter = activity?.let { ArrayAdapter.createFromResource(it, R.array.SortingOptions, android.R.layout.simple_spinner_item) } as SpinnerAdapter
 
         sortingDropdown.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>) {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
                 Log.i("testDropdown", "Nothing selected!")
             }
 
-            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 Log.i("testDropdown", sortOptions[position])
 
                 //Set sortByMethod to local variable based on input
@@ -101,14 +105,15 @@ class SearchFragment : Fragment() {
 
         // Search Button
         searchBtn.setOnClickListener{
-            if (recordedSearchTerm.isNotBlank()){
+            if (MainActivity.searchTerm.isNotBlank()){
                 errorText.text = ""
-                MainActivity.searchTerm = recordedSearchTerm
                 MainActivity.sortByMethod = selectedSortMethod
-                Log.i("submitTest", "Search term: $recordedSearchTerm, Sort method: $selectedSortMethod")
+                Log.i("submitTest", "Search term: ${MainActivity.searchTerm}, Sort method: ${MainActivity.sortByMethod}")
 
                 //Todo: Make api call with given data + go to resultFragment w/ back stacking!
 
+                MainActivity.beanList = ApiHelper.JsonToBeans()
+                fm.beginTransaction().replace(R.id.fragmentContainerView, ResultFragment()).addToBackStack("1").commit()
             }
             else {
                 errorText.text = "Record something before submitting!"
@@ -136,7 +141,7 @@ class SearchFragment : Fragment() {
                 recOutputText.text = Objects.requireNonNull(res)[0]
 
                 // Storing output as search term
-                recordedSearchTerm = Objects.requireNonNull(res)[0]
+                MainActivity.searchTerm = Objects.requireNonNull(res)[0]
             }
         }
     }
