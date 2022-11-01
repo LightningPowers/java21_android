@@ -151,7 +151,7 @@ class SearchFragment : Fragment() {
     fun callApi (searchTerm: String, sortingMethod: String) {
 
         val apiKey: String = "a387816e461540d59289caccadd582d5"
-        val url = "https://newsapi.org/v2/everything?q=$searchTerm&sortBy=$sortingMethod&apiKey=$apiKey"
+        val url = "https://newsapi.org/v2/everything?q=$searchTerm&sortBy=$sortingMethod&pageSize=20&apiKey=$apiKey"
 
         val queue = Volley.newRequestQueue(this.context)
 

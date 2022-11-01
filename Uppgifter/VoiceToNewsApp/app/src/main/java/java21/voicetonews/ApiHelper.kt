@@ -12,12 +12,20 @@ class ApiHelper {
             //Todo: Add timer delay when doing api call
 
 
-            var placeholderBean: ArticleBean = ArticleBean(
+            val placeholderBean: ArticleBean = ArticleBean(
                 "Man Can’t Remember What He Ran Into Burning Building For",
                 "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
                 "Fauxnews",
-                "15:04 - Nov 1st")
-            var beanList = arrayListOf<ArticleBean>(placeholderBean)
+                "2022-10-31T14:05:01Z")
+            val beanList = arrayListOf<ArticleBean>(placeholderBean)
+
+            //Todo: Add (for?) loop that adds all articles
+
+            beanList.add(placeholderBean)
+            beanList.add(placeholderBean)
+            beanList.add(placeholderBean)
+            beanList.add(placeholderBean)
+            beanList.add(placeholderBean)
             beanList.add(placeholderBean)
             beanList.add(placeholderBean)
             beanList.add(placeholderBean)
