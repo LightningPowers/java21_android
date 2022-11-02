@@ -46,42 +46,12 @@ class SearchFragment : Fragment() {
         searchBtn = view.findViewById(R.id.searchSubmitButton)
 
         //Todo: Test api call
-        callApi("Volvo", "publishedAt")
+        callApi()
 
         // For backstack
         val fm: FragmentManager = parentFragmentManager
 
         errorText.text = ""
-        var selectedSortMethod: String = ""
-
-        // Access dropdown items & spinner (dropdown)
-        val sortOptions: Array<String> = view.resources.getStringArray(R.array.SortingOptions)
-        val sortingDropdown: Spinner = view.findViewById(R.id.sortByDropdown)
-
-        sortingDropdown.adapter = activity?.let { ArrayAdapter.createFromResource(it, R.array.SortingOptions, android.R.layout.simple_spinner_item) } as SpinnerAdapter
-
-        sortingDropdown.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                Log.i("testDropdown", "Nothing selected!")
-            }
-
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                Log.i("testDropdown", sortOptions[position])
-
-                //Set sortByMethod to local variable based on input
-                when (sortOptions[position]) {
-                    "Relevancy" -> {
-                        selectedSortMethod = "relevancy"
-                    }
-                    "Popularity" -> {
-                        selectedSortMethod = "popularity"
-                    }
-                    "Recency" -> {
-                        selectedSortMethod = "publishedAt"
-                    }
-                }
-            }
-        }
 
         // Record button
         recBtn.setOnClickListener {
@@ -110,8 +80,7 @@ class SearchFragment : Fragment() {
         searchBtn.setOnClickListener{
             if (MainActivity.searchTerm.isNotBlank()){
                 errorText.text = ""
-                MainActivity.sortByMethod = selectedSortMethod
-                Log.i("submitTest", "Search term: ${MainActivity.searchTerm}, Sort method: ${MainActivity.sortByMethod}")
+                Log.i("submitTest", "Search term: ${MainActivity.searchTerm}")
 
                 // Makes api call and get the returned arraylist of beans
                 MainActivity.beanList = ApiHelper.jsonToBeans()
@@ -151,18 +120,16 @@ class SearchFragment : Fragment() {
     }
 
     // Calling news Api
-    fun callApi (searchTerm: String, sortingMethod: String) {
+    fun callApi () {
 
         val apiKey: String = "a387816e461540d59289caccadd582d5"
-        val url = "https://newsapi.org/v2/everything?q=$searchTerm&sortBy=$sortingMethod&pageSize=20&apiKey=$apiKey"
-        val url1 = "https://newsapi.org/v2/everything?q=Volvo&sortBy=publishedAt&pageSize=20&apiKey=a387816e461540d59289caccadd582d5"
-        val url2 = "https://api.openweathermap.org/data/2.5/weather?q=lund,SE&appid=e6176132ad6e88a57a819231231195e2"
-        val url3 = "https://newsdata.io/api/1/news?apikey=pub_1301641852cdfd0619f7c1efe2bffcd2f0554&q=volvo"
+
+        val url = "https://newsdata.io/api/1/news?apikey=pub_1301641852cdfd0619f7c1efe2bffcd2f0554&q=volvo"
 
         val queue = Volley.newRequestQueue(activity)
 
         val JsonRequest = JsonObjectRequest(
-            Request.Method.GET, url3, null, { response: JSONObject? ->
+            Request.Method.GET, url, null, { response: JSONObject? ->
                 // Display the first 500 characters of the response string.
                 Log.d("initialResponse", response.toString())
 

@@ -50,7 +50,6 @@ class ResultFragment : Fragment() {
             override fun handleOnBackPressed() {
                 if (isEnabled){
                     MainActivity.searchTerm = ""
-                    MainActivity.sortByMethod = ""
                     isEnabled = false
                     requireActivity().onBackPressed()
                 }

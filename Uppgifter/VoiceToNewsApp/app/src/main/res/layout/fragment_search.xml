@@ -50,15 +50,6 @@
         android:text="Placeholder Text - Replace At Launch"
         android:textColor="@color/strong_red" />
 
-    <Spinner
-        android:id="@+id/sortByDropdown"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        android:gravity="center"
-        tools:ignore="SpeakableTextPresentCheck" />
-
     <Button
         android:id="@+id/searchSubmitButton"
         android:layout_width="150dp"

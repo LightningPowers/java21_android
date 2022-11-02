@@ -2,9 +2,5 @@
     <string name="app_name">Voice-To-News App</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string-array name="SortingOptions">
-        <item>Relevancy</item>
-        <item>Popularity</item>
-        <item>Recency</item>
-    </string-array>
+
 </resources>
