@@ -45,7 +45,10 @@ class SearchFragment : Fragment() {
         errorText = view.findViewById(R.id.searchStatusText)
         searchBtn = view.findViewById(R.id.searchSubmitButton)
 
-        // To handle backstacking
+        //Todo: Test api call
+        callApi("Volvo", "publishedAt")
+
+        // For backstack
         val fm: FragmentManager = parentFragmentManager
 
         errorText.text = ""
@@ -111,7 +114,7 @@ class SearchFragment : Fragment() {
                 Log.i("submitTest", "Search term: ${MainActivity.searchTerm}, Sort method: ${MainActivity.sortByMethod}")
 
                 // Makes api call and get the returned arraylist of beans
-                MainActivity.beanList = ApiHelper.JsonToBeans()
+                MainActivity.beanList = ApiHelper.jsonToBeans()
 
                 // Backstack
                 fm.beginTransaction().replace(R.id.fragmentContainerView, ResultFragment()).addToBackStack("1").commit()
@@ -152,15 +155,23 @@ class SearchFragment : Fragment() {
 
         val apiKey: String = "a387816e461540d59289caccadd582d5"
         val url = "https://newsapi.org/v2/everything?q=$searchTerm&sortBy=$sortingMethod&pageSize=20&apiKey=$apiKey"
+        val url1 = "https://newsapi.org/v2/everything?q=Volvo&sortBy=publishedAt&pageSize=20&apiKey=a387816e461540d59289caccadd582d5"
+        val url2 = "https://api.openweathermap.org/data/2.5/weather?q=lund,SE&appid=e6176132ad6e88a57a819231231195e2"
+        val url3 = "https://newsdata.io/api/1/news?apikey=pub_1301641852cdfd0619f7c1efe2bffcd2f0554&q=volvo"
 
-        val queue = Volley.newRequestQueue(this.context)
+        val queue = Volley.newRequestQueue(activity)
 
-        val jsonRequest = JsonObjectRequest(
-            Request.Method.GET, url, null, { response: JSONObject? ->
+        val JsonRequest = JsonObjectRequest(
+            Request.Method.GET, url3, null, { response: JSONObject? ->
                 // Display the first 500 characters of the response string.
-                Log.w("initialResponse", response.toString())
+                Log.d("initialResponse", response.toString())
 
                 try {
+                    Log.i("test", "hejhopp")
+                    //if (response != null) {
+                        //ApiHelper.jsonToArticles(response)
+                   //}
+
                     // https://github.com/SirSalsa/java21_android/blob/main/Uppgifter/ApiApp/app/src/main/java/com/example/apiapp/WeatherFragment.kt
                     //Getting location
                     /*
@@ -174,7 +185,7 @@ class SearchFragment : Fragment() {
                     val weatherArray: Array<String> = weather.split(",").toTypedArray()
                     val description: String = weatherArray[1].substring(weatherArray[1].indexOf(":")+1)*/
 
-                     //Todo: handle json response and add to arraylist of beans
+                    //Todo: handle json response and add to arraylist of beans
 
 
                 } catch (e: Exception) {
@@ -182,10 +193,11 @@ class SearchFragment : Fragment() {
                 }
             },
             { error: VolleyError ->
-                Log.w("volleyError", "error")
+                Log.w("volleyError", "VolleyError: " + error.message.toString())
+               // Log.w("volleyStacktrace", "volleyError Stacktrace " + error.stackTraceToString())
             })
 
-        queue.add(jsonRequest)
+        queue.add(JsonRequest)
 
     }
 }
