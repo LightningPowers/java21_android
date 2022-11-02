@@ -3,6 +3,7 @@ package java21.voicetonews
 import android.annotation.SuppressLint
 import android.app.Activity.RESULT_OK
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.speech.RecognizerIntent
 import android.util.Log
@@ -11,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.FragmentManager
 import com.android.volley.Request
 import com.android.volley.VolleyError
@@ -18,6 +20,8 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONObject
 import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.concurrent.timerTask
 
 class SearchFragment : Fragment() {
 
@@ -29,9 +33,7 @@ class SearchFragment : Fragment() {
     lateinit var errorText: TextView
     lateinit var searchBtn: Button
 
-    // Temp variable for storing search term
-    //private var recordedSearchTerm: String = ""
-
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("MissingInflatedId", "SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -44,9 +46,6 @@ class SearchFragment : Fragment() {
         recOutputText = view.findViewById(R.id.searchOutputText)
         errorText = view.findViewById(R.id.searchStatusText)
         searchBtn = view.findViewById(R.id.searchSubmitButton)
-
-        //Todo: Test api call
-        callApi()
 
         // For backstack
         val fm: FragmentManager = parentFragmentManager
@@ -82,11 +81,11 @@ class SearchFragment : Fragment() {
                 errorText.text = ""
                 Log.i("submitTest", "Search term: ${MainActivity.searchTerm}")
 
-                // Makes api call and get the returned arraylist of beans
-                MainActivity.beanList = ApiHelper.jsonToBeans()
+                callApi()
 
-                // Backstack
-                fm.beginTransaction().replace(R.id.fragmentContainerView, ResultFragment()).addToBackStack("1").commit()
+                val timer = Timer()
+                timer.schedule(timerTask { fm.beginTransaction().replace(R.id.fragmentContainerView, ResultFragment())
+                    .addToBackStack("1").commit() }, 2500)
             }
             else {
                 errorText.text = "Record something before submitting!"
@@ -120,11 +119,11 @@ class SearchFragment : Fragment() {
     }
 
     // Calling news Api
+    @RequiresApi(Build.VERSION_CODES.O)
     fun callApi () {
-
-        val apiKey: String = "a387816e461540d59289caccadd582d5"
-
-        val url = "https://newsdata.io/api/1/news?apikey=pub_1301641852cdfd0619f7c1efe2bffcd2f0554&q=volvo"
+        val apiKey: String = "pub_1301641852cdfd0619f7c1efe2bffcd2f0554"
+        val url = "https://newsdata.io/api/1/news?apikey=${apiKey}&q=${MainActivity.searchTerm}"
+        Log.d("test", url)
 
         val queue = Volley.newRequestQueue(activity)
 
@@ -135,25 +134,9 @@ class SearchFragment : Fragment() {
 
                 try {
                     Log.i("test", "hejhopp")
-                    //if (response != null) {
-                        //ApiHelper.jsonToArticles(response)
-                   //}
-
-                    // https://github.com/SirSalsa/java21_android/blob/main/Uppgifter/ApiApp/app/src/main/java/com/example/apiapp/WeatherFragment.kt
-                    //Getting location
-                    /*
-                    val cityName: String = response!!.get("name").toString().replace("\"","")
-                    val country: String = response.get("sys").toString().replace("\"","")
-                    val countryArray: Array<String> = country.split(",").toTypedArray()
-                    val outputCountryCode: String = countryArray[2].substring(countryArray[2].indexOf(":")+1)
-
-                    //Getting description
-                    val weather: String = response.get("weather").toString().replace("\"","")
-                    val weatherArray: Array<String> = weather.split(",").toTypedArray()
-                    val description: String = weatherArray[1].substring(weatherArray[1].indexOf(":")+1)*/
-
-                    //Todo: handle json response and add to arraylist of beans
-
+                    if (response != null) {
+                        MainActivity.beanList = ApiHelper.jsonToArticles(response)
+                    }
 
                 } catch (e: Exception) {
                     Log.e("responseException", e.message.toString())
@@ -165,6 +148,5 @@ class SearchFragment : Fragment() {
             })
 
         queue.add(JsonRequest)
-
     }
 }
