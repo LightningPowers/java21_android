@@ -2,17 +2,19 @@ package java21.voicetonews
 
 import android.annotation.SuppressLint
 import android.app.Activity.RESULT_OK
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.speech.RecognizerIntent
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.android.volley.Request
 import com.android.volley.VolleyError
@@ -20,10 +22,13 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONObject
 import java.util.*
-import kotlin.collections.ArrayList
 import kotlin.concurrent.timerTask
 
+
 class SearchFragment : Fragment() {
+
+    // For saving data between sessions
+    private val sharedPrefFile: String = "MySharedPref"
 
     // Creating a constant value
     private val resultInputCode = 1
@@ -50,6 +55,19 @@ class SearchFragment : Fragment() {
         // For backstack
         val fm: FragmentManager = parentFragmentManager
 
+        // To save data between sessions
+        val sharePref: SharedPreferences = requireContext().getSharedPreferences(sharedPrefFile, MODE_PRIVATE)
+
+        // Sets output text to saved entry (if it exists), otherwise uses default
+        recOutputText.text = sharePref.getString("recOutput", R.string.recordOutput_placeholder.toString())
+
+        // Enables search to work with restored stored data
+        if (recOutputText.text.toString() != R.string.recordOutput_placeholder.toString()){
+            MainActivity.searchTerm =
+                sharePref.getString("recOutput", R.string.recordOutput_placeholder.toString()).toString()
+        }
+
+        // Reset error text
         errorText.text = ""
 
         // Record button
@@ -100,6 +118,8 @@ class SearchFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
+        val sharePref: SharedPreferences = requireContext().getSharedPreferences(sharedPrefFile, MODE_PRIVATE)
+
         // Checking request code with the resultInputCode
         if (requestCode == resultInputCode) {
             // Checking if result code is ok
@@ -111,6 +131,9 @@ class SearchFragment : Fragment() {
 
                 // Displaying output as text in text output box
                 recOutputText.text = Objects.requireNonNull(res)[0]
+
+                // Saving input data
+                sharePref.edit().putString("recOutput", recOutputText.text.toString()).apply()
 
                 // Storing output as search term
                 MainActivity.searchTerm = Objects.requireNonNull(res)[0]

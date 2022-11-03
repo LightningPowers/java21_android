@@ -2,5 +2,6 @@
     <string name="app_name">Voice-To-News App</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="recordOutput_placeholder">Recorded text here...</string>
 
 </resources>
