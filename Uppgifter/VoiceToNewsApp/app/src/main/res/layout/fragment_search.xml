@@ -8,22 +8,13 @@
     tools:context=".SearchFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/searchTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="30dp"
-        android:gravity="center|top"
-        android:text="Search Fragment"
-        android:textSize="24sp" />
 
     <Button
         android:id="@+id/searchRecordButton"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:layout_marginBottom="30dp"
         android:backgroundTint="@color/red"
         android:gravity="center"
