@@ -59,7 +59,7 @@ class SearchFragment : Fragment() {
         val sharePref: SharedPreferences = requireContext().getSharedPreferences(sharedPrefFile, MODE_PRIVATE)
 
         // Sets output text to saved entry (if it exists), otherwise uses default
-        recOutputText.text = sharePref.getString("recOutput", R.string.recordOutput_placeholder.toString())
+        recOutputText.text = sharePref.getString("recOutput", resources.getString(R.string.recordOutput_placeholder))
 
         // Enables search to work with restored stored data
         if (recOutputText.text.toString() != R.string.recordOutput_placeholder.toString()){
